@@ -11,10 +11,10 @@ fi
 
 # Copy a default file over
 if [ ! -f "/config/plexpy.ini" ]; then
-    cp /opt/plexpy/config.ini /config/plexpy.ini
+    cp /opt/plexpy/app/config.ini /config/plexpy.ini
 fi
 
 # Set permissions
 chown -R plexpy:plexpy /config/ /opt/plexpy
 
-exec runuser -l plexpy -c '/opt/plexpy/PlexPy.py --daemon --nolaunch --quiet --config /config/plexpy.ini --datadir /config/data'
+exec runuser -l plexpy -c '/opt/plexpy/app/PlexPy.py --nolaunch --quiet --config /config/plexpy.ini --datadir /config/data'

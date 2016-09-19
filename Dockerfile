@@ -16,7 +16,7 @@ RUN groupadd -g $LGID plexpy && \
     useradd -c 'PlexPy User' -s /bin/bash -m -d /opt/plexpy -g $LGID -u $LUID plexpy
     
 # Grab the installer, do the thing
-RUN git clone -q https://github.com/drzoidberg33/JonnyWong16.git /opt/plexpy/app && \
+RUN git clone -q https://github.com/JonnyWong16/plexpy.git /opt/plexpy/app && \
     chown -R plexpy:plexpy /opt/plexpy
 
 # Need a config and storage volume, expose proper port

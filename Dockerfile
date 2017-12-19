@@ -6,9 +6,17 @@ RUN dnf upgrade -yq && \
     dnf clean all
 
 # Install required packages
-RUN dnf install -yq git \
+RUN dnf install -yq gcc \
+                    git \
+                    gmp \
                     python \
+                    python-devel \
+                    redhat-rpm-config \
                     which && \
+    pip install -q pycryptodomex && \
+    dnf remove -yq gcc \
+                   python-devel \
+                   redhat-rpm-config && \
     dnf clean all
 
 # Set uid/gid (override with the '-e' flag), 1000/1000 used since it's the

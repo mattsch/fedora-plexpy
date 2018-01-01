@@ -1,4 +1,4 @@
-FROM mattsch/fedora-rpmfusion:26
+FROM mattsch/fedora-rpmfusion:27
 MAINTAINER Matthew Schick <matthew.schick@gmail.com>
 
 # Run updates
@@ -32,5 +32,3 @@ COPY run-plexpy.sh /bin/run-plexpy.sh
  
 # Run our script
 CMD ["/bin/run-plexpy.sh"]
-
-

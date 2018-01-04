@@ -11,7 +11,6 @@ RUN dnf install -yq gcc \
                     gmp \
                     python \
                     python-devel \
-                    python2-idna \
                     redhat-rpm-config \
                     which && \
     pip install -q pycryptodomex && \

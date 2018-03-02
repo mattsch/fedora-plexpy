@@ -27,8 +27,8 @@ ENV LUID=1000 LGID=1000
 
 # Create the plexpy user/group
 RUN groupadd -g $LGID tautulli && \
-    useradd -c 'Tautulli User' -s /bin/bash -m -d /opt/tautulli -g $LGID -u $LUID
-    tautulli
+    useradd -c 'Tautulli User' -s /bin/bash -m -d /opt/tautulli \
+        -g $LGID -u $LUID tautulli
 
 # Grab the installer, do the thing
 RUN mkdir -p /opt/tautulli && \

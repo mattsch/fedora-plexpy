@@ -35,7 +35,7 @@ RUN mkdir -p /opt/tautulli && \
     cd /opt/tautulli && \
     curl -sL -o - \
         https://github.com/Tautulli/Tautulli/archive/${upstream_tag}-beta.tar.gz \
-        | tar --strip-components=1 xzf - && \
+        | tar --strip-components=1 -xzf - && \
     chown -R tautulli:tautulli /opt/tautulli
 
 # Need a config and storage volume, expose proper port

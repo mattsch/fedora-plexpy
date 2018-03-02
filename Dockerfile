@@ -1,12 +1,14 @@
 FROM mattsch/fedora-rpmfusion:27
 MAINTAINER Matthew Schick <matthew.schick@gmail.com>
+ARG upstream_tag=v2.0.20-beta
 
 # Run updates
 RUN dnf upgrade -yq && \
     dnf clean all
 
 # Install required packages
-RUN dnf install -yq gcc \
+RUN dnf install -yq curl \
+                    gcc \
                     git \
                     gmp \
                     python \
@@ -24,20 +26,24 @@ RUN dnf install -yq gcc \
 ENV LUID=1000 LGID=1000
 
 # Create the plexpy user/group
-RUN groupadd -g $LGID plexpy && \
-    useradd -c 'PlexPy User' -s /bin/bash -m -d /opt/plexpy -g $LGID -u $LUID plexpy
+RUN groupadd -g $LGID tautulli && \
+    useradd -c 'Tautulli User' -s /bin/bash -m -d /opt/tautulli -g $LGID -u $LUID
+    tautulli
 
 # Grab the installer, do the thing
-RUN git clone -q https://github.com/JonnyWong16/plexpy.git \
-    -b beta /opt/plexpy/app && \
-    chown -R plexpy:plexpy /opt/plexpy
+RUN mkdir -p /opt/tautulli && \
+    cd /opt/tautulli && \
+    curl -sL -o - \
+        https://github.com/Tautulli/Tautulli/archive/${upstream_tag}-beta.tar.gz \
+        | tar --strip-components=1 xzf - && \
+    chown -R tautulli:tautulli /opt/tautulli
 
 # Need a config and storage volume, expose proper port
 VOLUME /config
 EXPOSE 8181
 
-# Add script to copy default config if one isn't there and start plexpy
-COPY run-plexpy.sh /bin/run-plexpy.sh
+# Add script to copy default config if one isn't there and start tautulli
+COPY run-tautulli.sh /bin/run-tautulli.sh
 
 # Run our script
-CMD ["/bin/run-plexpy.sh"]
+CMD ["/bin/run-tautulli.sh"]

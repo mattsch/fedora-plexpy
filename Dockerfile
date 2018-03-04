@@ -31,11 +31,9 @@ RUN groupadd -g $LGID tautulli && \
         -g $LGID -u $LUID tautulli
 
 # Grab the installer, do the thing
-RUN mkdir -p /opt/tautulli && \
-    cd /opt/tautulli && \
-    curl -sL -o - \
-        https://github.com/Tautulli/Tautulli/archive/${upstream_tag}-beta.tar.gz \
-        | tar --strip-components=1 -xzf - && \
+RUN cd /opt/tautulli && \
+    git clone -q https://github.com/Tautulli/Tautulli.git app \
+        -b ${upstream_tag} --depth 1 && \
     chown -R tautulli:tautulli /opt/tautulli
 
 # Need a config and storage volume, expose proper port

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mattsch/fedora-tautulli.svg?branch=master)](https://travis-ci.org/mattsch/fedora-tautulli)
 # Fedora Tautulli Docker Container
 
 Docker container for [Tautulli](http://tautulli.com/) using Fedora.

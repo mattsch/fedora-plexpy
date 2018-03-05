@@ -4,8 +4,10 @@ services:
   - docker
 
 env:
+  global:
   - IMG_NAME="docker.io/mattsch/fedora-tautulli"
   - VER="v2.0.20-beta"
+
 script:
   - 'docker login -u "$D_U" -p "$D_P"'
   - 'docker build --build-arg upstream_tag=${VER} -t ${IMG_NAME}:${VER/v} -t ${IMG_NAME}:latest .'

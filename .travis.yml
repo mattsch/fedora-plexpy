@@ -6,7 +6,7 @@ services:
 env:
   global:
   - IMG_NAME="docker.io/mattsch/fedora-tautulli"
-  - VER="v2.1.21"
+  - VER="v2.1.22"
 
 script:
 - 'docker login -u "$D_U" -p "$D_P"'
